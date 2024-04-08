@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Magic Balloon{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Magic Balloon</h1>
+        <p>Welcome to my awesome site , refresh the page to see the balloon change color.</p>
+        <div class="balloon" style="background-color: {{ color }};"></div>
+
+    </div>
+{% endblock %}
+

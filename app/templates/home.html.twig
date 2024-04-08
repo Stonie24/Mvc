@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Home</h1>
+        <p>
+            Mitt namn är William Stenqvist och jag är student på BTH webprogramerings programmet. Det jag tycker mest om är att leka
+            runt i css och koda javascript. Men jag ser fram emot MVC 
+            kursen som jag går nu och tror att den kommer vara utmanande men nyttig. Gillar att träna och ska springa Though viking
+            nästa helg i min hemstad Göteborg det är ett OCR lopp (obsicle course race) och ser väldigt mycket fram emot det ,
+            hoppas verkligen att jag kan slå min tid som jag satte förra året , det hade varit häftigt.
+        </p>
+        <img src="{{ asset('img/me.png') }}" alt="Me">
+    </div>
+{% endblock %}

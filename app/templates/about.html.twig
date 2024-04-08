@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %}About{% endblock %}
+
+{% block body %}
+    <div class="about">
+        <div>
+            <h1>About</h1>
+            <p> Välkommen till kursen mvc som ska lära oss denna terminen.
+                Vi kommer att jobba objectorienterat i php med hjälp av mvw <br>
+                M: Står för modell, denna del har ansvaret för att representera data samt hantera den modellen informerar också vyn om det
+                skulle uppstå några förändringar <br>
+                V: Står för view, här visar vi upp våra olika layouter i applikationen, och visar upp datan som kommer från modellen. <br>
+                C: betyder controller, Den har ansvaret att länka samman datan från modellen till de olika vyerna
+            </p>
+        </div>
+        <div class="aside">
+            <a href="https://github.com/dbwebb-se/mvc/tree/main">
+                <h3>länk till <strong>kursens</strong> github:</h3>
+                <img src="{{ asset('img/mvc.jpg') }}" alt="githubphoto" style="width:256px">
+            </a>
+            <a href="https://github.com/Stonie24">
+                <h3>länk till <strong>min</strong> github:</h3>
+                <img src="{{ asset('img/logo.jpg') }}" alt="githubphoto" style="width:256px">
+            </a>
+        </div>
+
+    </div>
+{% endblock %}

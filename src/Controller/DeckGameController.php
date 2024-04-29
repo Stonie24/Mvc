@@ -41,10 +41,13 @@ class DeckGameController extends AbstractController
     }
 
     #[Route("/card/deck/shuffle", name: "deck_shuffle")]
-    public function testShuffleDeck(): Response
+    public function testShuffleDeck(SessionInterface $session): Response
     {
+        
+        $session->remove('drawn_cards');
+        
         $num = 51;
-        $numberList = range(1,52);
+        $numberList = range(1, 52);
         shuffle($numberList);
         $deckList = [];
         for ($i = 0; $i <= $num; $i++) {
@@ -62,41 +65,58 @@ class DeckGameController extends AbstractController
     }
 
     #[Route("/card/deck/draw", name: "deck_draw")]
-    public function deckDraw(): Response
+    public function deckDraw(SessionInterface $session): Response
     {
+        
         $randomNumber = rand(1, 52);
-        $deckList = [];
-
+        
+        
         $deck = new DeckGraphic();
         $deck->assign($randomNumber);
-        $deckList[] = $deck->getAsString();
-
+        $drawnCard = $deck->getAsString();
+        
+        
+        $drawnCards = $session->get('drawn_cards', []);
+        
+        
+        $drawnCards[] = $drawnCard;
+        
+        
+        $session->set('drawn_cards', $drawnCards);
+        
+        
         $data = [
-            "num_of_cards" => 52 - count($deckList),
-            "deckList" => $deckList,
+            "num_of_cards" => 52 - count($drawnCards), 
+            "deckList" => $drawnCards,
         ];
 
         return $this->render('deck/test/roll.html.twig', $data);
     }
 
     #[Route("/card/deck/draw/{num<\d+>}", name: "deck_draw_num_cards")]
-    public function drawNumCards(int $num): Response
+    public function drawNumCards(int $num, SessionInterface $session): Response
     {
         if ($num > 52) {
-            throw new \Exception("Can not roll more than 52 dices!");
+            throw new \Exception("Can not draw more than 52 cards!");
         }
 
-        $numberList = range(1,52);
+        $drawnCards = $session->get('drawn_cards', []);
+
+        $numberList = range(1, 52);
         shuffle($numberList);
         $deckList = [];
         for ($i = 1; $i <= $num; $i++) {
             $deck = new DeckGraphic();
             $deck->assign($numberList[$i]);
-            $deckList[] = $deck->getAsString();
+            $drawnCard = $deck->getAsString();
+            $drawnCards[] = $drawnCard;
+            $deckList[] = $drawnCard;
         }
 
+        $session->set('drawn_cards', $drawnCards);
+
         $data = [
-            "num_of_cards" => 52 - count($deckList),
+            "num_of_cards" => 52 - count($drawnCards),
             "deckList" => $deckList,
         ];
 

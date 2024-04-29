@@ -7,19 +7,12 @@ class DeckHand
 {
     private $hand = [];
 
-    public function add(Deck $die): void
+    public function add(Deck $card): void
     {
-        $this->hand[] = $die;
+        $this->hand[] = $card;
     }
 
-    public function roll(): void
-    {
-        foreach ($this->hand as $die) {
-            $die->roll();
-        }
-    }
-
-    public function getNumberDices(): int
+    public function getNumberCards(): int
     {
         return count($this->hand);
     }
@@ -27,8 +20,8 @@ class DeckHand
     public function getValues(): array
     {
         $values = [];
-        foreach ($this->hand as $die) {
-            $values[] = $die->getValue();
+        foreach ($this->hand as $card) {
+            $values[] = $card->getValue();
         }
         return $values;
     }
@@ -36,8 +29,8 @@ class DeckHand
     public function getString(): array
     {
         $values = [];
-        foreach ($this->hand as $die) {
-            $values[] = $die->getAsString();
+        foreach ($this->hand as $card) {
+            $values[] = $card->getAsString();
         }
         return $values;
     }

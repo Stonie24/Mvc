@@ -23,10 +23,11 @@ class LuckyControllerTwig extends AbstractController
     }
 
     // Function to pick a random color from the array
-    private function pickRandomColor($colors) {
+    private function pickRandomColor($colors)
+    {
         // Generate a random index within the range of the array length
         $randomIndex = rand(0, count($colors) - 1);
-        
+
         // Return the color at the random index
         return $colors[$randomIndex];
     }

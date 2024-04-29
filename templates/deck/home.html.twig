@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Card Game{% endblock %}
+
+{% block body %}
+<h1>Card game</h1>
+
+
+<p> This is my landing page for the card game im about to create</p>
+
+<form method="post" action="">
+    <p>
+        <input type="submit" name="roll" value="Deck"
+            onClick="this.form.action='{{ path('card_deck') }}';"
+        >
+        <input type="submit" name="save" value="Shuffle"
+            onClick="this.form.action='{{ path('deck_shuffle') }}';"
+        >
+        <input type="submit" name="save" value="Draw"
+            onClick="this.form.action='{{ path('deck_draw') }}';"
+        >
+    </p>
+</form>
+
+{% endblock %}

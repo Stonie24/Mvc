@@ -8,7 +8,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LuckyControllerJson
 {
-
     #[Route("/api")]
     public function jsonRoutes(): Response
     {
@@ -22,7 +21,7 @@ class LuckyControllerJson
             "report" => "ANY      ANY      ANY    /report/{kmom}"
         ];
 
-        
+
         $response = new JsonResponse($data);
         $response->setEncodingOptions(
             $response->getEncodingOptions() | JSON_PRETTY_PRINT
@@ -45,7 +44,7 @@ class LuckyControllerJson
             'quote' => $list[$quote],
         ];
 
-        
+
         $response = new JsonResponse($data);
         $response->setEncodingOptions(
             $response->getEncodingOptions() | JSON_PRETTY_PRINT

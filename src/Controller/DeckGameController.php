@@ -67,24 +67,30 @@ class DeckGameController extends AbstractController
     #[Route("/card/deck/draw", name: "deck_draw")]
     public function deckDraw(SessionInterface $session): Response
     {
-        
-        $randomNumber = rand(1, 52);
-        
-        
-        $deck = new DeckGraphic();
-        $deck->assign($randomNumber);
-        $drawnCard = $deck->getAsString();
-        
-        
         $drawnCards = $session->get('drawn_cards', []);
-        
-        
-        $drawnCards[] = $drawnCard;
-        
-        
-        $session->set('drawn_cards', $drawnCards);
-        
-        
+        if (count($drawnCards) >= 52) {
+            $drawnCards[0] = "No cards lef too draw";
+        } else {
+            $randomNumber = rand(1, 52 - count($drawnCards));
+            
+            $deck = new DeckGraphic();
+            foreach ($drawnCards as $cards) {
+                $deck->pop($cards);;
+            }
+            $deck->assign($randomNumber);
+            $drawnCard = $deck->getAsString();
+            
+            
+            
+            
+            $drawnCards[] = $drawnCard;
+            
+            
+            $session->set('drawn_cards', $drawnCards);
+            
+            
+            
+        }
         $data = [
             "num_of_cards" => 52 - count($drawnCards), 
             "deckList" => $drawnCards,
@@ -96,24 +102,32 @@ class DeckGameController extends AbstractController
     #[Route("/card/deck/draw/{num<\d+>}", name: "deck_draw_num_cards")]
     public function drawNumCards(int $num, SessionInterface $session): Response
     {
+        $drawnCards = $session->get('drawn_cards', []);
         if ($num > 52) {
             throw new \Exception("Can not draw more than 52 cards!");
-        }
-
-        $drawnCards = $session->get('drawn_cards', []);
-
-        $numberList = range(1, 52);
-        shuffle($numberList);
-        $deckList = [];
-        for ($i = 1; $i <= $num; $i++) {
+        } elseif (count($drawnCards) + $num >= 52) {
+            $deckList[0] = "Not enough cards lef too draw";
+        } else {
+            $numberList = range(1, 52 - count($drawnCards));
+            shuffle($numberList);
+            
             $deck = new DeckGraphic();
-            $deck->assign($numberList[$i]);
-            $drawnCard = $deck->getAsString();
-            $drawnCards[] = $drawnCard;
-            $deckList[] = $drawnCard;
+            foreach ($drawnCards as $cards) {
+                $deck->pop($cards);;
+            }
+
+            $deckList = [];
+            for ($i = 1; $i <= $num; $i++) {
+                // $deck = new DeckGraphic();
+                $deck->assign($numberList[$i]);
+                $drawnCard = $deck->getAsString();
+                $drawnCards[] = $drawnCard;
+                $deckList[] = $drawnCard;
+            }
+
+            $session->set('drawn_cards', $drawnCards);
         }
 
-        $session->set('drawn_cards', $drawnCards);
 
         $data = [
             "num_of_cards" => 52 - count($drawnCards),

@@ -15,6 +15,11 @@ class Deck
         return $this->value = $number;
     }
 
+    public function pop($number): array
+    {
+        
+    }
+
     public function getValue(): int
     {
         return $this->value;

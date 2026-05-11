@@ -22,6 +22,7 @@ h1 {
     max-width: 60vw;
     margin-left: 20vw;
     min-height: 60vh;
+    background-color: seashell;
 }
 
 .about{

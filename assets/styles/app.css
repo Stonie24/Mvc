@@ -22,7 +22,10 @@ h1 {
     max-width: 60vw;
     margin-left: 20vw;
     min-height: 60vh;
-    background-color: seashell;
+    background-color: rgba(255, 245, 238, 0.95);
+    padding: 2rem 3rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 }
 
 .about{

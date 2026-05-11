@@ -7,27 +7,21 @@
     <div class="container">
         <h1>Report</h1>
         <h2 id="kmom01">Kmom01</h2>
-        <p>
-            <h3>Berätta kort om dina förkunskaper och tidigare erfarenheter kring objektorientering.</h3>
-            <p>Har läst objektorienterad python precis innan detta så mitt minne är färskt kring det. Sen vet jag inte hur stor skillnad det kommer vara på python och php 
-            men än så länge är det relativt likt med lite små skillnader.</p>
-            <h3>Berätta kort om PHPs modell för klasser och objekt. 
-            Vilka är de grunder man behöver veta/förstå för att kunna komma igång och skapa sina första klasser?</h3>
-            <p>För att skapa en skriver man "class" följ av ett ord med stor bokstav, 
-            man kan skapa 3 olika properties  public , private och protected. För att skapa en 
-            method så skriver man nån av dem 3 orden samt function. För att skapa ett object skriver man $namnpåobj = new NamnPåClass(), </p>
-            <h3>Reflektera kort över den kodbas, koden, strukturen som användes till uppgiften me/report, hur uppfattar du den?</h3>
-            <p> Den är uppbyg med controller templetes och en public map. Tycker den är ganska tydlig , dock lite svårt att förstå 
-            hur vissa delar i Symfony fungerade i början men det sitter nu.</p>
-            <h3>Med tanke på artikeln “PHP The Right Way”, vilka delar in den finner du extra intressanta och värdefulla?
-                Är det några särskilda områden som du känner att du vill veta mer om? Lyft fram några delar av artikeln som du känner mer värdefulla.
-            </h3>
-            <p> Jag tyckte att kapitler med coding practices var väldigt intresant , tycket att det är viktigt att ha en hög
-                kodstandrad , och det kommer vara extra viktigt när man väl kommer ut till arbetslivet senare.
-            </p>
-            <h3>Vilken är din TIL för detta kmom?</h3>
-            <p> Jag har lärt mig hur man sätter upp en hemsida i Symfony samt vad mvc modellen är för något</p>
-        </p>
+
+        <h3>Berätta kort om dina förkunskaper och tidigare erfarenheter kring objektorientering.</h3>
+        <p>Jag har läst objektorienterad programmering i Python precis innan detta kursmoment, så mina kunskaper är relativt färska. I Python använde jag klasser, objekt, arv och inkapsling på ett naturligt sätt. Jag visste inte exakt hur stor skillnaden skulle vara mot PHP, men efter att ha jobbat med det ett tag märker jag att grundkoncepten är desamma, men syntaxen skiljer sig på några punkter, till exempel hur man deklarerar properties och använder `$this`.</p>
+
+        <h3>Berätta kort om PHPs modell för klasser och objekt. Vilka är de grunder man behöver veta/förstå för att kunna komma igång och skapa sina första klasser?</h3>
+        <p>I PHP skapar man en klass med nyckelordet <code>class</code> följt av ett namn med stor bokstav. Properties kan deklareras som <code>public</code>, <code>private</code> eller <code>protected</code>, vilket styr åtkomsten utifrån. Metoder skapas på samma sätt med ett av dessa nyckelord följt av <code>function</code>. För att instansiera ett objekt skriver man <code>$obj = new KlassNamn()</code>. En viktig detalj i PHP är att man alltid refererar till objektets egna properties och metoder via <code>$this</code>, vilket skiljer sig lite från Python där man använder <code>self</code>.</p>
+
+        <h3>Reflektera kort över den kodbas, koden, strukturen som användes till uppgiften me/report, hur uppfattar du den?</h3>
+        <p>Strukturen är uppbyggd enligt MVC-mönstret med controllers, templates och en publik katalog. Jag tycker den är relativt tydlig när man väl förstår hur delarna hänger ihop. I början var det lite förvirrande att förstå hur Symfony kopplar ihop routes med controllers och hur Twig renderar templates, men efter att ha jobbat med det ett tag känns det naturligt. Det är en skalbar och välorganiserad struktur som gör det enkelt att lägga till nya sidor och funktioner.</p>
+
+        <h3>Med tanke på artikeln "PHP The Right Way", vilka delar finner du extra intressanta och värdefulla?</h3>
+        <p>Jag tyckte att kapitlet om coding practices var särskilt intressant. Det är viktigt att skriva ren, konsekvent och läsbar kod, inte minst när man arbetar i team eller kommer ut i arbetslivet. Jag fann även avsnittet om säkerhet värdefullt — det är lätt att missa saker som SQL-injektion eller XSS om man inte aktivt tänker på det. Något jag gärna vill lära mig mer om är dependency injection och hur man strukturerar större PHP-applikationer på ett professionellt sätt.</p>
+
+        <h3>Vilken är din TIL för detta kmom?</h3>
+        <p>Min största lärdom (TIL) är hur man sätter upp en webbplats med Symfony och förstår MVC-modellens uppbyggnad. Jag har också lärt mig hur Twig fungerar som templatemotor och hur man skapar routes med hjälp av PHP-attribut direkt i controllers. Det var ett roligt och lärorikt kursmoment som gav mig en solid grund att bygga vidare på under resten av kursen.</p>
         <h2 id="kmom02">Kmom02</h2>
         <p>
             Redovisningtext

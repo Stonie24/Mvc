@@ -1,37 +1,36 @@
 # Mvc Project
 
-- [Setup](#Setup)
-- [Install](#Install)
-- [Usage](#usage)
-## Setup
+![Screenshot](img/info.png)
 
-Download the Repository
-or use this code :
+## Table of Contents
+- [Setup](#setup)
+- [Install](#install)
+- [Usage](#usage)
+- [Info](#info)
+
+## Setup
+Clone the repository:
 ```bash
-git clone <https://github.com/Stonie24/Mvc>
+git clone https://github.com/Stonie24/Mvc
 ```
 
 ## Install
-
-Before you start using the code you need to install the dependencies. To use that write:
+Install the dependencies:
 ```bash
-$ cd Mvc
-npm install
+cd Mvc
+composer install
 ```
 
 ## Usage
-To run the server you use :
+Start the local server:
 ```bash
-# You are in the mvc/ directory
-php -S localhost:8888 -t public
+symfony serve
 ```
 
-If you want to find our what routes exist :
+Check available routes:
 ```bash
-# You are in the mvc/ directory
-bin/console debug:router
+php bin/console debug:router
 ```
 
 ## Info
-
-This project was made by William Stenqvist, write to me on Github or E-mail me on Wise23@bth.student.se
+This project was made by William Stenqvist. Contact me on GitHub or email: wise23@student.bth.se

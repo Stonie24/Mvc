@@ -1,25 +1,36 @@
 {% extends "base.html.twig" %}
 
-{% block title %} Card Game{% endblock %}
+{% block title %}Card Game{% endblock %}
 
 {% block body %}
-<h1>Card game</h1>
+<div class="container">
+<h1>Card Game</h1>
 
+<p>Welcome to the card game section. Here you can browse the deck, shuffle it and draw cards.</p>
 
-<p> This is my landing page for the card game im about to create</p>
+<p>
+    <a href="{{ path('card_deck') }}" class="btn btn-primary">View Deck</a>
+    <a href="{{ path('deck_shuffle') }}" class="btn btn-secondary">Shuffle</a>
+    <a href="{{ path('deck_draw') }}" class="btn btn-success">Draw Card</a>
+</p>
 
-<form method="post" action="">
-    <p>
-        <input type="submit" name="roll" value="Deck"
-            onClick="this.form.action='{{ path('card_deck') }}';"
-        >
-        <input type="submit" name="save" value="Shuffle"
-            onClick="this.form.action='{{ path('deck_shuffle') }}';"
-        >
-        <input type="submit" name="save" value="Draw"
-            onClick="this.form.action='{{ path('deck_draw') }}';"
-        >
-    </p>
-</form>
+<hr>
+
+<h2>Class Structure</h2>
+
+<p>The card game is built using four classes organized with inheritance and composition:</p>
+
+<ul>
+    <li><strong>Deck</strong> — The base class representing a single card. Holds a suit and a value (e.g. Hearts / A).</li>
+    <li><strong>DeckGraphic</strong> — Extends <code>Deck</code>. Overrides <code>getAsString()</code> to return a Unicode card symbol (e.g. 🂱). Also provides a <code>getColor()</code> method for red/black suits.</li>
+    <li><strong>DeckOfCards</strong> — Composed of 52 <code>DeckGraphic</code> objects. Handles the full deck: initialization, shuffling and drawing cards.</li>
+    <li><strong>DeckHand</strong> — Composed of <code>DeckGraphic</code> objects. Represents a player's hand of drawn cards.</li>
+</ul>
+
+<h2>UML Class Diagram</h2>
+
+<img src="/img/uml.png" alt="UML">
+</div>
+
 
 {% endblock %}

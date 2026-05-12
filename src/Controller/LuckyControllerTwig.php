@@ -8,15 +8,15 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LuckyControllerTwig extends AbstractController
 {
-    #[Route("/lucky", name: "lucky")]
+    #[Route('/lucky', name: 'lucky')]
     public function lucky(): Response
     {
-        $colors = array("red", "blue", "green", "yellow", "orange", "purple");
+        $colors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple'];
 
         $randomColor = $this->pickRandomColor($colors);
 
         $data = [
-            'color' => $randomColor
+            'color' => $randomColor,
         ];
 
         return $this->render('lucky.html.twig', $data);
@@ -32,23 +32,23 @@ class LuckyControllerTwig extends AbstractController
         return $colors[$randomIndex];
     }
 
-    #[Route("/", name: "home")]
+    #[Route('/', name: 'home')]
     public function home(): Response
     {
         return $this->render('home.html.twig');
     }
 
-    #[Route("/about", name: "about")]
+    #[Route('/about', name: 'about')]
     public function about(): Response
     {
         return $this->render('about.html.twig');
     }
 
-    #[Route("/report/{kmom?}", name: "report")]
+    #[Route('/report/{kmom?}', name: 'report')]
     public function report($kmom = null): Response
     {
         return $this->render('report.html.twig', [
-            'kmom' => $kmom
+            'kmom' => $kmom,
         ]);
     }
 }

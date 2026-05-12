@@ -1,7 +1,6 @@
 <?php
-namespace App\Dice;
 
-use App\Dice\Dice;
+namespace App\Dice;
 
 class DiceHand
 {
@@ -30,6 +29,7 @@ class DiceHand
         foreach ($this->hand as $die) {
             $values[] = $die->getValue();
         }
+
         return $values;
     }
 
@@ -39,6 +39,7 @@ class DiceHand
         foreach ($this->hand as $die) {
             $values[] = $die->getAsString();
         }
+
         return $values;
     }
 }

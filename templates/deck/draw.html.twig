@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Draw Cards{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1>Drawn Cards</h1>
+
+{{ include('flash.html.twig') }}
+
+<div class="card-grid">
+{% for card in cards %}
+    <span class="card {{ card.color }}">{{ card.symbol }}</span>
+{% endfor %}
+</div>
+
+<p>Cards remaining in deck: {{ num_remaining }}</p>
+
+<p>
+    <a href="{{ path('deck_draw') }}">Draw one more</a> |
+    <a href="{{ path('deck_draw_num', {num: 5}) }}">Draw 5</a> |
+    <a href="{{ path('deck_shuffle') }}">Reshuffle</a>
+</p>
+</div>
+{% endblock %}

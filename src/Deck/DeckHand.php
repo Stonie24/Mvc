@@ -1,13 +1,13 @@
 <?php
-namespace App\Deck;
 
-use App\Deck\Deck;
+namespace App\Deck;
 
 class DeckHand
 {
-    private $hand = [];
+    /** @var DeckGraphic[] */
+    private array $hand = [];
 
-    public function add(Deck $card): void
+    public function add(DeckGraphic $card): void
     {
         $this->hand[] = $card;
     }
@@ -17,13 +17,9 @@ class DeckHand
         return count($this->hand);
     }
 
-    public function getValues(): array
+    public function getCards(): array
     {
-        $values = [];
-        foreach ($this->hand as $card) {
-            $values[] = $card->getValue();
-        }
-        return $values;
+        return $this->hand;
     }
 
     public function getString(): array
@@ -32,6 +28,7 @@ class DeckHand
         foreach ($this->hand as $card) {
             $values[] = $card->getAsString();
         }
+
         return $values;
     }
 }

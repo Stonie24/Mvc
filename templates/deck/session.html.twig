@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Session{% endblock %}
+
+{% block body %}
+<h1>Session Contents</h1>
+
+{{ include('flash.html.twig') }}
+
+{% if session is empty %}
+    <p>The session is empty.</p>
+{% else %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, value in session %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>
+                    {% if key == 'deck' %}
+                        DeckOfCards object ({{ value.count() }} cards remaining)
+                    {% else %}
+                        {{ value }}
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+<a href="{{ path('session_delete') }}" class="btn btn-danger">Clear session</a>
+
+{% endblock %}

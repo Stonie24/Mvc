@@ -23,9 +23,22 @@
         <h3>Vilken är din TIL för detta kmom?</h3>
         <p>Min största lärdom (TIL) är hur man sätter upp en webbplats med Symfony och förstår MVC-modellens uppbyggnad. Jag har också lärt mig hur Twig fungerar som templatemotor och hur man skapar routes med hjälp av PHP-attribut direkt i controllers. Det var ett roligt och lärorikt kursmoment som gav mig en solid grund att bygga vidare på under resten av kursen.</p>
         <h2 id="kmom02">Kmom02</h2>
-        <p>
-            Redovisningtext
-        </p>
+
+        <h3>Förklara kort de objektorienterade konstruktionerna arv, komposition, interface och trait och hur de används i PHP.</h3>
+        <p>Arv innebär att en klass kan ärva egenskaper och metoder från en annan klass. I PHP använder man nyckelordet <code>extends</code>. I mitt projekt ärver <code>DeckGraphic</code> från <code>Deck</code>, vilket betyder att den får tillgång till suit och value men kan överskriva <code>getAsString()</code> för att returnera en Unicode-symbol istället.</p>
+        <p>Komposition innebär att ett objekt byggs upp av andra objekt. <code>DeckOfCards</code> är ett exempel den innehåller 52 stycken <code>DeckGraphic</code>-objekt och representerar kort i en kortlek. <code>DeckHand</code> fungerar på samma sätt och visat de kort som dragits.</p>
+        <p>Interface är ett kontrakt som tvingar en klass att implementera vissa metoder, utan att ange hur de ska implementeras. I PHP används nyckelordet <code>interface</code>. Jag använde dock inte interface i detta kmom</p>
+        <p>Trait är ett sätt att återanvända kod i flera klasser utan arv. Med nyckelordet <code>trait</code> kan man definiera metoder som sedan inkluderas i en klass med <code>use</code>. Jag använde dock inga traits i kmom02.</p>
+
+        <h3>Berätta om din implementation från uppgiften. Hur löste du uppgiften, är du nöjd/missnöjd, vilken förbättringspotential ser du i din koden och dina klasser?</h3>
+        <p>Jag byggde fyra klasser: <code>Deck</code> som representerar ett enskilt kort med suit och value, <code>DeckGraphic</code> som ärver från <code>Deck</code> och returnerar Unicode-kortsymboler, <code>DeckOfCards</code> som håller hela kortleken och hanterar shuffle och draw, samt <code>DeckHand</code> som representerar en spelares hand.</p>
+        <p>Jag är relativt nöjd med strukturen. Klasserna är tydligt separerade och följer MVC-principen där kontrollern hanterar routing och session medan klasserna sköter logiken. En förbättringspotential är att lägga till ett interface för kortet så att man enklare kan byta ut implementationen. Jag skulle också kunna förbättra felhanteringen när kortleken är tom.</p>
+
+        <h3>Vilka är dina reflektioner så här långt med att jobba i Symfony med applikationskod enligt MVC?</h3>
+        <p>Symfony känns strukturerat och det är tydligt var olika delar av koden ska ligga. Det var lite klurigt med ett flertal mappar och filer men nu börjat strukturen äntligen falla på plats.</p>
+
+        <h3>Vilken är din TIL för detta kmom?</h3>
+        <p>Min TIL är hur man strukturerar PHP-klasser enligt OOP-principer och integrerar dem vilket har varit givande och roligt. Jag lärde mig också hur <code>php-cs-fixer</code> fungerar och värdet av att ha ett verktyg som automatiskt formaterar koden enligt en gemensam standard.</p>
         <h2 id="kmom03">Kmom03</h2>
         <p>
             Redovisningtext

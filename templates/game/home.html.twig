@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blackjack{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Blackjack</h1>
+
+    <h2>Regler</h2>
+    <p>Målet är att komma så nära 21 som möjligt utan att gå över.</p>
+    <ul>
+        <li>Nummer-kort är värda sitt värde</li>
+        <li>J, Q, K är värda 10</li>
+        <li>Ess är värt 1 eller 11</li>
+        <li>Går du över 21 förlorar du direkt</li>
+        <li>Banken tar kort tills den har 17 eller mer</li>
+        <li>Banken vinner vid lika</li>
+    </ul>
+
+    <a href="{{ path('game_play') }}">
+        <button>Starta spel</button>
+    </a>
+</div>
+{% endblock %}

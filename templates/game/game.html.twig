@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <div class="game">
+        {% if gameStatus == 'playing' %}
+            <h1 class="flex">Bank Showing: {{dealerScore }}</h1>
+        {% else %}
+            <h1 class="flex">Bank Score: {{dealerScore }}</h1>
+        {% endif %}
+        <div class="cards">
+            {% for card in dealerHand %}
+                <span>{{ card }}</span>
+            {% endfor %}
+        </div>
+        <div class="cards">
+            {% for card in playerHand %}
+                <span>{{ card }}</span>
+            {% endfor %}
+        </div>
+
+
+
+    </div>
+
+
+    <h1 class="flex">Your Score: {{playerScore}}</h1>
+
+    {% if gameStatus == 'playing' %}
+        <div class="flex">
+            <form method="post" action="{{ path('game_hit') }}">
+                <button type="submit">Hit</button>
+            </form>
+
+            <form method="post" action="{{ path('game_stand') }}">
+                <button type="submit">Stand</button>
+            </form>
+        </div>
+
+    {% else %}
+    <div class="flex">
+        <h2>Spelet är slut!</h2>
+        {% if gameStatus == 'player_bust' %}
+            <h2>Du gick över 21, banken vinner!</h2>
+        {% elseif gameStatus == 'dealer_bust' %}
+            <h2>Banken gick över 21, du vinner!</h2>
+        {% elseif gameStatus == 'player_win' %}
+            <h2>Du vinner!</h2>
+        {% else %}
+            <h2>Banken vinner!</h2>
+        {% endif %}
+        <a href="{{ path('game_play') }}">Spela igen</a>
+    </div>
+    {% endif %}
+
+
+</div>
+{% endblock %}

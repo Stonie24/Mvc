@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dokumentation{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Spelets dokumentation</h1>
+
+    <h2>Pseudokod</h2>
+    <pre>
+START SPEL
+  - Dela ut 2 kort till spelare
+  - Dela ut 2 kort till bank (ett dolt)
+
+OM spelaren väljer HIT
+  - Ge spelaren ett kort
+  - OM spelaren > 21 → bust, banken vinner
+
+OM spelaren väljer STAND
+  - Visa bankens dolda kort
+  - MEDAN banken < 17 → ta ett kort
+  - OM banken > 21 → bust, spelaren vinner
+  - ANNARS → jämför poäng
+    - bank >= spelare → banken vinner
+    - spelare > bank → spelaren vinner
+
+SPELET SLUT → visa resultat, möjlighet att spela igen
+    </pre>
+
+  <h2>Flödesschema</h2>
+  <img src="{{ asset('img/blackjack_flowchart.svg') }}" alt="Blackjack flödesschema">
+
+    <a href="{{ path('game_start') }}">Tillbaka till spelet</a>
+</div>
+{% endblock %}

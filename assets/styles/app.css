@@ -190,3 +190,21 @@ input {
 .btn {
     color: seashell;
 }
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cards {
+    font-size: 8rem;
+}

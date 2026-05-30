@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>{{ book.title }}</h1>
+
+    {% if book.image %}
+        <img src="{{ book.image }}" alt="{{ book.title }}" style="max-width: 200px">
+    {% endif %}
+
+    <p><strong>Author:</strong> {{ book.author }}</p>
+    <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+
+    <a href="{{ path('library_update_get', {id: book.id}) }}">Edit</a> |
+    <a href="{{ path('library_show_all') }}">Back to all books</a>
+</div>
+{% endblock %}

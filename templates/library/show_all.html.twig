@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All Books{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>All Books</h1>
+
+    {{ include('flash.html.twig') }}
+
+    <a href="{{ path('library_create_get') }}">Add new book</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>ISBN</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.isbn }}</td>
+                <td>
+                    <a href="{{ path('library_show_one', {id: book.id}) }}">View</a> |
+                    <a href="{{ path('library_update_get', {id: book.id}) }}">Edit</a> |
+                    <form method="post" action="{{ path('library_delete', {id: book.id}) }}" style="display:inline">
+                        <button type="submit" onclick="return confirm('Delete this book?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

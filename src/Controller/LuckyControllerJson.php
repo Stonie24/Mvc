@@ -10,6 +10,15 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LuckyControllerJson
 {
+    private function createJsonResponse(array $data): JsonResponse
+    {
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+        return $response;
+    }
+
     #[Route('/api')]
     public function jsonRoutes(): Response
     {
@@ -20,15 +29,12 @@ class LuckyControllerJson
                 ['method' => 'POST', 'path' => '/api/deck/shuffle',       'description' => 'Shuffles the deck and returns it as JSON'],
                 ['method' => 'POST', 'path' => '/api/deck/draw',          'description' => 'Draws one card from the deck'],
                 ['method' => 'POST', 'path' => '/api/deck/draw/{number}', 'description' => 'Draws {number} cards from the deck'],
+                ['method' => 'GET', 'path' => '/api/library/books', 'description' => 'Returns all books in the library'],
+                ['method' => 'GET', 'path' => '/api/library/book/{isbn}', 'description' => 'Returns a single book by ISBN'],
             ],
         ];
 
-        $response = new JsonResponse($data);
-        $response->setEncodingOptions(
-            $response->getEncodingOptions() | JSON_PRETTY_PRINT
-        );
-
-        return $response;
+    return $this->createJsonResponse($data);
     }
 
     #[Route('/api/quote')]
@@ -46,12 +52,7 @@ class LuckyControllerJson
             'timestamp' => time(),
         ];
 
-        $response = new JsonResponse($data);
-        $response->setEncodingOptions(
-            $response->getEncodingOptions() | JSON_PRETTY_PRINT
-        );
-
-        return $response;
+    return $this->createJsonResponse($data);
     }
 
     #[Route('/api/deck', name: 'api_get_deck', methods: ['GET'])]
@@ -69,12 +70,8 @@ class LuckyControllerJson
             'remaining' => $deck->count(),
         ];
 
-        $response = new JsonResponse($data);
-        $response->setEncodingOptions(
-            $response->getEncodingOptions() | JSON_PRETTY_PRINT
-        );
+        return $this->createJsonResponse($data);
 
-        return $response;
     }
 
     #[Route('/api/deck/shuffle', name: 'api_shuffle_deck', methods: ['POST'])]
@@ -94,12 +91,7 @@ class LuckyControllerJson
             'remaining' => $deck->count(),
         ];
 
-        $response = new JsonResponse($data);
-        $response->setEncodingOptions(
-            $response->getEncodingOptions() | JSON_PRETTY_PRINT
-        );
-
-        return $response;
+    return $this->createJsonResponse($data);
     }
 
     #[Route('/api/deck/draw', name: 'api_deck_draw', methods: ['POST'])]
@@ -114,12 +106,7 @@ class LuckyControllerJson
             'remaining' => $deck->count(),
         ];
 
-        $response = new JsonResponse($data);
-        $response->setEncodingOptions(
-            $response->getEncodingOptions() | JSON_PRETTY_PRINT
-        );
-
-        return $response;
+    return $this->createJsonResponse($data);
     }
 
     #[Route('/api/deck/draw/{number<\d+>}', name: 'api_deck_draw_num', methods: ['POST'])]
@@ -139,11 +126,6 @@ class LuckyControllerJson
             ];
         }
 
-        $response = new JsonResponse($data);
-        $response->setEncodingOptions(
-            $response->getEncodingOptions() | JSON_PRETTY_PRINT
-        );
-
-        return $response;
+    return $this->createJsonResponse($data);
     }
 }

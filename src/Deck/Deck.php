@@ -2,7 +2,7 @@
 
 namespace App\Deck;
 
-class Deck
+class Deck implements CardInterface
 {
     protected string $suit;
     protected string $value;

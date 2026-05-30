@@ -22,11 +22,13 @@
             <tr>
                 <td>{{ key }}</td>
                 <td>
-                    {% if key == 'deck' %}
-                        DeckOfCards object ({{ value.count() }} cards remaining)
-                    {% else %}
-                        {{ value }}
-                    {% endif %}
+                {% if key == 'deck' %}
+                    DeckOfCards object ({{ value.count() }} cards remaining)
+                {% elseif key == 'game' %}
+                    BlackjackGame object (status: {{ value.getGameStatus() }})
+                {% else %}
+                    {{ value }}
+                {% endif %}
                 </td>
             </tr>
             {% endfor %}

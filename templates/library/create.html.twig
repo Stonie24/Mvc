@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add Book{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Add a new book</h1>
+
+    <form method="post" action="{{ path('library_create_post') }}">
+        <div>
+            <label>Title</label>
+            <input type="text" name="title" required>
+        </div>
+        <div>
+            <label>Author</label>
+            <input type="text" name="author" required>
+        </div>
+        <div>
+            <label>ISBN</label>
+            <input type="text" name="isbn" required>
+        </div>
+        <div>
+            <label>Image URL</label>
+            <input type="text" name="image">
+        </div>
+        <button type="submit">Add book</button>
+    </form>
+
+    <a href="{{ path('library_show_all') }}">Back to all books</a>
+</div>
+{% endblock %}

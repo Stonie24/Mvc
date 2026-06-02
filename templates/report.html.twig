@@ -99,9 +99,32 @@
             
         </p>
         <h2 id="kmom06">Kmom06</h2>
+        <h3>
+            Finns det något som är särskilt bra eller dåligt i din kod när du ser på den med "clean code" ögon?
+        </h3>
         <p>
-            Redovisningtext
-        
+            När jag analyserade min kod med phpmetrics och Scrutinizer fick jag en tydligare bild av 
+            vad som kan förbättras. Det som stack ut mest var att mina controllers hade för många 
+            ansvarsområden och att det fanns mycket kodduplicering i LuckyControllerJson där samma 
+            JsonResponse-mönster upprepades i varje metod.
+        </p>
+        <h3>Är du nöjd med din kod och vad tycker du om verktygen?</h3>
+        <p>
+            Scrutinizer gav betyget 10/10 vilket kändes bra, men jag förstår nu att ett högt betyg 
+            inte garanterar perfekt kod, controllers är till exempel svåra att enhetstesta vilket 
+            håller nere kodtäckningen trots att koden kan vara välskriven och därför jag själv inte skrivit några tester där.
+        </p>
+
+        <h3>Gjorde du något för att förbättra din kod och vad hände med mätvärdena?</h3>
+        <p>
+            Jag genomförde tre förbättringar: extraherade en hjälpmetod i LuckyControllerJson, 
+            delade upp LibraryController i två klasser och lade till ett CardInterface i Deck-paketet. 
+            Kan läsa mer om resultaten på från förbättringarna i <strong> <a href="{{ path('metrics') }}">Metrics</a></strong> .
+        </p>
+        <h3>Vilken är din TIL för detta kmom?</h3>
+        <p>
+            Min TIL är att statiska kodanalysverktyg som phpmetrics och Scrutinizer är ett effektivt 
+            sätt att hitta förbättringspotential i sin kod på ett objektivt och mätbart sätt.
         </p>
         <h2 id="kmom10">kmom10</h2>
         <p>

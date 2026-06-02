@@ -1,0 +1,125 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Metrics{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Metrics - Kodkvalitet</h1>
+
+    <h2>Introduktion</h2>
+    <p>
+        För att mäta och förbättra kodkvalitet kan man utgå från sex grundläggande principer, de 6 C:n
+    </p>
+    <ul>
+        <li><strong>Codestyle</strong> Konsekvent kodstil gör koden läsbar och underhållbar. I detta projekt används php-cs-fixer med Symfony-standard för att säkerställa enhetlig formatering.</li> <br>
+        <li><strong>Coverage</strong> Kodtäckning mäter hur stor del av koden som testas av enhetstester. Projektet har 18% total täckning men har betydligt mycket högre på dem viktagre områderna.</li> <br>
+        <li><strong>Complexity</strong> Cyklomatisk komplexitet mäter antalet möjliga exekveringsvägar i koden. Projektets genomsnitt är 3.47 per klass vilket är rätt så bra.</li> <br>
+        <li><strong>Cohesion</strong> Kohesion mäter hur väl sammanhållen en klass är. Där en hög kohesion betyder att klassan är väl sammanhållen och att klassen uppnår sitt syfte och att den är inriktad och fokuserad på det syftet. LCOM är så PHPMetrics mäter kohesionen. I mitt projekt ligger klasserna på en LCOM på 1.21 vilket är ganska bra.</li> <br>
+        <li><strong>Coupling</strong> Koppling mäter beroenden mellan klasser. Alltså hur självständig koden är låg coupling innebäör att klasserna eller modulerna kan jobba i stor del själva och om man ändrar på andra ställen i koden riskerar man oftast inte att förstöra nånting. Projektets genomsnittliga afferent koppling är 0.89 och efferent 2.37 vilket jag förstod som helt okej.</li> <br>
+        <li><strong>CRAP</strong> Change Risk Anti-Patterns kombinerar komplexitet och kodtäckning. Låg täckning på komplexa metoder ger högt CRAP-värde och indikerar riskfylld kod. Man vill därför sikta så lågt som möjligt, detta skulle i teorin beyta att koden är lättare att testa.</li> <br>
+    </ul>
+
+    <h2>Phpmetrics</h2>
+    <p>
+        Phpmetrics analyserar källkoden statiskt och genererar en HTML-rapport med kvalitetsmått.
+        Nedan visas en översikt av rapporten för detta projekt.
+    </p>
+
+    <img src="{{ asset('img/phpmetrics.png') }}" alt="Phpmetrics overview" style="max-width:100%;margin:1rem 0;">
+
+    <p>Tre två punkter identifierades i rapporten:</p>
+
+    <ol>
+        <li>
+            <strong>Violations "Probably bugged"</strong><br>
+            Tre controllers flaggades: <code>LuckyControllerJson</code>, <code>LibraryController</code> och <code>DiceGameController</code>.
+            Dessa har hög uppskattad buggprobabilitet på grund av många metoder och hög komplexitet per klass.
+            Genomsnittlig buggprobabilitet per klass var 0.15.
+        </li>
+        <li>
+            <strong>Hög relativ systemkomplexitet</strong><br>
+            Det var många röda cirklar i <code>PHPMetrics</code> detta indikerar att Complexiten är hög i min kod, där blackjack spelet representerar den största röda cirklen. På en Complexitet på 14 och maintainability-index på 42. 
+        </li>
+    </ol>
+
+    <img src="{{ asset('img/phpmetrics_violations.png') }}" alt="Phpmetrics violations" style="max-width:100%;margin:1rem 0;">
+
+    <h2>Scrutinizer</h2>
+    <p>
+        Projektets första build gav betyget <strong>10/10</strong> med 18% kodtäckning, fullt pott på betyget kändes ju svin bra men kodteckningen kunde defenitift varit högre.
+    </p>
+
+    <p>
+        <a href="https://scrutinizer-ci.com/g/Stonie24/Mvc/build-status/main">
+            <img src="https://scrutinizer-ci.com/g/Stonie24/Mvc/badges/build.png?b=main" alt="Build Status">
+        </a>
+        <a href="https://scrutinizer-ci.com/g/Stonie24/Mvc/?branch=main">
+            <img src="https://scrutinizer-ci.com/g/Stonie24/Mvc/badges/coverage.png?b=main" alt="Code Coverage">
+        </a>
+        <a href="https://scrutinizer-ci.com/g/Stonie24/Mvc/?branch=main">
+            <img src="https://scrutinizer-ci.com/g/Stonie24/Mvc/badges/quality-score.png?b=main" alt="Scrutinizer Code Quality">
+        </a>
+    </p>
+
+    <h2>Förbättringar</h2>
+    <p>Tre konkreta förbättringar genomfördes baserat på analyserna:</p>
+
+    <ol>
+        <li>
+            <strong>Extraherade <code>createJsonResponse()</code> i LuckyControllerJson</strong><br>
+            Jag  skapade en <code>JsonResponse</code> och <code>JSON_PRETTY_PRINT</code>
+            förekom i alla 6 metoder. Detta gjorde att koden inte blev speciellt DRY so jag skapade en privat hjälpmetod.
+            Detta minskade relativ systemkomplexitet från 81.38 till 63.02 och förbättrade maintainability-indexet.
+        </li>
+        <li>
+            <strong>Delade upp LibraryController i två klasser</strong><br>
+            <code>LibraryController</code> hanterade både HTML-routes och API-routes vilket är dåligt för kohesionen.
+            De två API-metoderna flyttades till en ny <code>LibraryApiController</code>.
+            Detta minskade antalet metoder per klass och förbättrade kohesionen.
+        </li>
+        <li>
+            <strong>Lade till CardInterface i Deck-paketet</strong><br>
+            Paketet <code>App\Deck</code> bröt mot Stable Abstractions Principle eftersom det var stabilt men
+            helt konkret. Ett <code>CardInterface</code> skapades och implementerades av <code>Deck</code>-klassen.
+            Detta fixade en av de 6 varningarna och ökade antalet interfaces från 0 till 1.
+        </li>
+    </ol>
+
+    <p><strong>Mätvärden före och efter förbättringarna:</strong></p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mätvärde</th>
+                <th>Före</th>
+                <th>Efter</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Violations (warnings)</td><td>6</td><td>5</td></tr>
+            <tr><td>Interfaces</td><td>0</td><td>1</td></tr>
+            <tr><td>Avg cyklomatisk komplexitet</td><td>3.61</td><td>3.47</td></tr>
+            <tr><td>Relativ systemkomplexitet</td><td>81.38</td><td>63.02</td></tr>
+            <tr><td>Avg buggar per klass</td><td>0.15</td><td>0.13</td></tr>
+            <tr><td>Lack of cohesion</td><td>1.56</td><td>1.21</td></tr>
+        </tbody>
+    </table>
+
+    <h2>Diskussion</h2>
+    <p>
+        Att aktivt jobba med kodkvalitet via verktyg som phpmetrics och Scrutinizer ger konkreta och
+        mätbara förbättringar. Det är ett effektivt sätt att identifiera problem som annars är svåra
+        att se med blotta ögat, till exempel kodduplicering och brott mot abstraktionsprinciper. Man får god visuell feedback på vad det är som behövs fixas också vilket gör det roligare att fixa felen, istället för att bara se error medeleanden i consollen som försavinner.
+    </p>
+    <p>
+        En fördel är att verktygen ger objektiva mätvärden som gör det lätt att motivera refaktoreringar.
+        En nackdel är att siffrorna kan vara missvisande, ett högt Scrutinizer-betyg garanterar inte att
+        koden är lättläst eller välstrukturerad. Controllers är till exempel svåra
+        att enhetstesta och drar ner kodtäckningen trots att de kan vara välskrivna.
+    </p>
+    <p>
+        Andra sätt att jobba mot clean code är code reviews, parprogrammering och att följa
+        etablerade designmönster som SOLID. Verktyg är ett bra komplement speciellt som ni när jag inte har någon som kan parprogrammera eller göra code reviews med.
+    </p>
+</div>
+{% endblock %}

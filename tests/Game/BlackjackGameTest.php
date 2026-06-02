@@ -97,4 +97,16 @@ class BlackjackGameTest extends TestCase
             ['playing', 'player_bust']
         );
     }
+
+    public function testGetPlayerHand(): void
+    {
+        $game = new BlackjackGame();
+        $this->assertInstanceOf(\App\Deck\DeckHand::class, $game->getPlayerHand());
+    }
+
+    public function testGetDealerHand(): void
+    {
+        $game = new BlackjackGame();
+        $this->assertInstanceOf(\App\Deck\DeckHand::class, $game->getDealerHand());
+    }
 }

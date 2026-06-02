@@ -1,5 +1,10 @@
 # Mvc Project
 
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/Stonie24/Mvc/badges/code-intelligence.svg?b=main)](https://scrutinizer-ci.com/code-intelligence)
+[![Build Status](https://scrutinizer-ci.com/g/Stonie24/Mvc/badges/build.png?b=main)](https://scrutinizer-ci.com/g/Stonie24/Mvc/build-status/main)
+[![Code Coverage](https://scrutinizer-ci.com/g/Stonie24/Mvc/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/Stonie24/Mvc/?branch=main)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Stonie24/Mvc/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/Stonie24/Mvc/?branch=main)
+
 ![Screenshot](img/info.png)
 
 ## Table of Contents

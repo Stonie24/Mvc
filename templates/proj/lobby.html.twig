@@ -1,0 +1,48 @@
+{% extends 'proj/base.html.twig' %}
+
+{% block title %}Välj spel – Constellation Blackjack{% endblock %}
+
+{% block body %}
+<div class="proj-lobby">
+    <h1>🌌 Starta spel</h1>
+
+    <form method="post" action="{{ path('proj_start') }}">
+        <div class="lobby-field">
+            <label for="name">🌟 Spelarnamn</label>
+            <input type="text" id="name" name="name" required placeholder="Ditt namn...">
+        </div>
+
+        <div class="lobby-field">
+            <label>💫 Antal händer</label>
+            <div class="lobby-options">
+                <label class="option-card">
+                    <input type="radio" name="num_hands" value="1" checked> 1 hand
+                </label>
+                <label class="option-card">
+                    <input type="radio" name="num_hands" value="2"> 2 händer
+                </label>
+                <label class="option-card">
+                    <input type="radio" name="num_hands" value="3"> 3 händer
+                </label>
+            </div>
+        </div>
+
+        <div class="lobby-field">
+            <label>✨ Insats per hand</label>
+            <div class="lobby-options">
+                <label class="option-card">
+                    <input type="radio" name="bet" value="50" checked> 50 kr
+                </label>
+                <label class="option-card">
+                    <input type="radio" name="bet" value="100"> 100 kr
+                </label>
+                <label class="option-card">
+                    <input type="radio" name="bet" value="250"> 250 kr
+                </label>
+            </div>
+        </div>
+
+        <button type="submit" class="proj-btn">Starta</button>
+    </form>
+</div>
+{% endblock %}

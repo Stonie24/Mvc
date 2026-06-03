@@ -30,7 +30,6 @@ body.proj-body {
     text-decoration: none;
     margin-left: 1.5rem;
     font-size: 0.95rem;
-    transition: color 0.2s;
 }
 
 .proj-nav a:hover { color: #c8a2e8; }
@@ -53,7 +52,6 @@ body.proj-body {
     font-size: 2.2rem;
     color: #c8a2e8;
     margin-bottom: 1rem;
-    text-shadow: 0 0 20px #7b5ea7;
 }
 
 .proj-hero p {
@@ -72,13 +70,10 @@ body.proj-body {
     border-radius: 6px;
     text-decoration: none;
     border: 1px solid #c8a2e8;
-    transition: all 0.2s;
-    letter-spacing: 1px;
 }
 
 .proj-btn:hover {
-    background: linear-gradient(135deg, #9b7ec8, #6a5a9a);
-    box-shadow: 0 0 15px #7b5ea7;
+    background: linear-gradient(135deg, #9b7ec8);
 }
 
 /* Rules */
@@ -101,3 +96,77 @@ body.proj-body {
 }
 .proj-about ul { list-style: none; padding-left: 0.5rem; line-height: 2.2; }
 .proj-about p { line-height: 1.8; color: #aaaacc; }
+
+
+/* Lobby */
+.proj-lobby {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.proj-lobby h1 {
+    color: #c8a2e8;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 20px #7b5ea7;
+}
+
+.lobby-field {
+    margin-bottom: 2rem;
+}
+
+.lobby-field label {
+    display: block;
+    color: #c8a2e8;
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+}
+
+.lobby-field input[type="text"] {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    background: rgba(20, 15, 50);
+    border: 1px solid #7b5ea7;
+    border-radius: 6px;
+    color: #e8e8f0;
+    font-size: 1rem;
+}
+
+.lobby-field input[type="text"]:focus {
+    outline: none;
+    border-color: #c8a2e8;
+    box-shadow: 0 0 8px #7b5ea7;
+}
+
+.lobby-options {
+    display: flex;
+    gap: 1rem;
+}
+
+.option-card {
+    flex: 1;
+    text-align: center;
+    padding: 0.8rem;
+    background: rgba(20, 15, 50);
+    border: 1px solid #7b5ea744;
+    border-radius: 8px;
+    color: #e8e8f0 !important;
+    font-size: 0.95rem;
+}
+
+.option-card:has(input:checked) {
+    border-color: #c8a2e8;
+    background: rgba(123, 94, 167);
+}
+
+.option-card input[type="radio"] {
+    display: none;
+}
+
+.proj-lobby .proj-btn {
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+    padding: 1rem;
+    font-size: 1.1rem;
+}

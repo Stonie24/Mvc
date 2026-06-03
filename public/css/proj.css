@@ -1,0 +1,103 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body.proj-body {
+    font-family: 'Georgia', serif;
+    background: #0a0a1a url('../img/star.jpg') center/cover no-repeat fixed;
+    color: #e8e8f0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.proj-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(10, 10, 40, 0.85);
+    border-bottom: 1px solid #7b5ea7;
+}
+
+.proj-logo {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #c8a2e8;
+    letter-spacing: 2px;
+}
+
+.proj-nav a {
+    color: #c8d8f0;
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.proj-nav a:hover { color: #c8a2e8; }
+
+/* Main */
+.proj-main {
+    flex: 1;
+    padding: 3rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.proj-hero {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.proj-hero h1 {
+    font-size: 2.2rem;
+    color: #c8a2e8;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px #7b5ea7;
+}
+
+.proj-hero p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #9999bb;
+}
+
+.proj-btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: linear-gradient(135deg, #7b5ea7);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 6px;
+    text-decoration: none;
+    border: 1px solid #c8a2e8;
+    transition: all 0.2s;
+    letter-spacing: 1px;
+}
+
+.proj-btn:hover {
+    background: linear-gradient(135deg, #9b7ec8, #6a5a9a);
+    box-shadow: 0 0 15px #7b5ea7;
+}
+
+/* Rules */
+.proj-rules {
+    background: rgba(20, 15, 50, 0.9);
+    border: 1px solid #7b5ea744;
+    border-radius: 10px;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.proj-rules h2 { color: #c8a2e8; margin-bottom: 1rem; }
+.proj-rules ul { list-style: none; padding-left: 0.5rem; line-height: 2.2; }
+
+/* About */
+.proj-about h1, .proj-about h2 {
+    color: #c8a2e8;
+    margin: 1.5rem 0 0.5rem;
+    text-shadow: 0 0 10px #7b5ea7;
+}
+.proj-about ul { list-style: none; padding-left: 0.5rem; line-height: 2.2; }
+.proj-about p { line-height: 1.8; color: #aaaacc; }

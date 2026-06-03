@@ -1,0 +1,23 @@
+{% extends 'proj/base.html.twig' %}
+
+{% block title %}Blackjack Casino – Hem{% endblock %}
+
+{% block body %}
+<div class="proj-hero">
+    <h1>✨Välkommen till Constellation Games✨</h1>
+    <p>Testa lyckan mot banken och sikta mot stjärnorna men landa närmast 21 utan att gå över.</p>
+    <a class="proj-btn" href="{{ path('game_play') }}">Spela nu</a>
+</div>
+
+<div class="proj-rules">
+    <h2>Regler</h2>
+    <ul>
+        <li>Nummer-kort är värda sitt eget värde 💫</li>
+        <li>J, Q, K är värda 10 💫</li>
+        <li>Ess är värt 1 eller 11 💫</li>
+        <li>Över 21 = bust, du förlorar 💫</li>
+        <li>Banken drar tills den har minst 17 💫</li>
+        <li>Banken vinner vid lika 💫</li>
+    </ul>
+</div>
+{% endblock %}

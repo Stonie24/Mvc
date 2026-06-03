@@ -1,0 +1,30 @@
+{% extends 'proj/base.html.twig' %}
+
+{% block title %}Om projektet{% endblock %}
+
+{% block body %}
+<div class="proj-about">
+    <h1>Om projektet</h1>
+    <p>
+        Detta är ett Blackjack-spel byggt med Symfony och PHP som ett examinationsprojekt i kursen MVC.
+        Spelet följer MVC-principen: kontrollern hanterar routing och session, modellen sköter spellogiken,
+        och Twig-templates renderar vyn.
+    </p>
+    <h2>Tekniker</h2>
+    <ul>
+        <li>PHP 8 med Symfony 6</li>
+        <li>Twig för templates</li>
+        <li>PHPUnit för enhetstester</li>
+        <li>Scrutinizer för CI/kodkvalitet</li>
+    </ul>
+    <h2>Klasser</h2>
+    <ul>
+        <li><strong>BlackjackGame</strong> spellogik (deal, hit, stand, poängräkning)</li>
+        <li><strong>DeckOfCards</strong> kortlek med shuffle och draw</li>
+        <li><strong>DeckHand</strong> en hand av kort</li>
+        <li><strong>GameController</strong> hanterar routes och session för spelet</li>
+    </ul>
+    <h2>Blackjack</h2>
+    <p> Jag valde att implementera Blacjack spelet vilket är likt det svenska versionen som heter 21. Dels för att jag redan hade implmenterat stora delar av spelet och har lite tids brist. Reglerna och spelet finns i  hem menyn.</p>
+</div>
+{% endblock %}

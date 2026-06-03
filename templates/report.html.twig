@@ -94,9 +94,46 @@
             Jag har lärt mig hur man sätter upp PHPUnit i Symfony och mäter kodtäckning med Xdebug. Det var coolt och kunna se hur mycket av koden som jag lyckades tecka och ett tag kände jag att jag ville ha 100% teckning i alla mina filer, men fick begränsa mig på grund av tiden.
         </p>
         <h2 id="kmom05">Kmom05</h2>
+
+        <h3>Gick det bra att jobba igenom övningen med Symfony och Doctrine?</h3>
         <p>
-            Redovisningtext
-            
+            Det gick hyfsat bra att jobba igenom övningen med Symfony och Doctrine. 
+            Det var lite utmaningar på vägen, bland annat att entiteten Book inte fick 
+            med sig alla fält från början vilket ledde till fel med saknade setters. 
+            Men efter att ha felsökt och fixat det rullade det på bra.
+        </p>
+
+        <h3>Berätta om din applikation och hur du tänkte när du byggde upp den.</h3>
+        <p>
+            Min applikation är ett enkelt bibliotekshanteringssystem där man kan lägga 
+            till, visa, redigera och ta bort böcker. Jag byggde upp det med en 
+            LibraryController som hanterar alla CRUD-operationer via tydliga routes 
+            för GET och POST. Varje bok har titel, författare, ISBN och en bild-URL. 
+            Jag lade också till två JSON API-routes så att man kan hämta alla böcker 
+            eller en specifik bok via ISBN nummer som ett ett nummer som identifierar tryckta medier.
+        </p>
+
+        <h3>Gick det bra att jobba med ORM i CRUD?</h3>
+        <p>
+            Det gick bra att jobba med ORM i CRUD. När man väl förstår hur EntityManager 
+            och Repository fungerar känns det logiskt och strukturerat. Att använda 
+            persist() och flush() för att spara data, och findAll() eller find() för 
+            att hämta det, är enkelt att följa.
+        </p>
+
+        <h3>Vad är din uppfattning om ORM så här långt?</h3>
+        <p>
+            Min uppfattning om ORM är positiv. Det känns mycket renare än att skriva 
+            rå SQL. Man jobbar med vanliga PHP-objekt istället för att tänka på 
+            tabeller och kolumner hela tiden, vilket gör koden mer läsbar och det är skönt att ha koden samlad och i ett format.
+        </p>
+
+        <h3>Vilken är din TIL för detta kmom?</h3>
+        <p>
+            Min TIL för detta kmom är hur Doctrine och ORM fungerar i praktiken. 
+            Att man kan mappa en PHP-klass direkt mot en databastabell med hjälp av 
+            attribut, och sedan låta Doctrine sköta all kommunikation med databasen, 
+            är ett kraftfullt koncept som jag tar med mig.
         </p>
         <h2 id="kmom06">Kmom06</h2>
         <h3>

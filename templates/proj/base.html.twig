@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Blackjack Casino{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('css/proj.css') }}">
+</head>
+<body class="proj-body">
+    <header class="proj-header">
+        <div class="proj-logo">Constellation Blackjack Game</div>
+        <nav class="proj-nav">
+            <a href="{{ path('proj_home') }}">Home🌟</a>
+            <a href="{{ path('proj_game') }}">Play💫</a>
+            <a href="{{ path('proj_about') }}">About✨</a>
+        </nav>
+    </header>
+
+    <main class="proj-main">
+        {% block body %}{% endblock %}
+    </main>
+
+    <footer class="proj-footer">
+        <p>Constellation Blackjack  &copy; 2026</p>
+    </footer>
+</body>
+</html>

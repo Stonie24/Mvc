@@ -1,0 +1,7 @@
+{
+    "includes": ["../../src/"],
+    "excludes": ["../../vendor/"],
+    "report": {
+        "html": "../../docs/metrics"
+    }
+}

@@ -238,6 +238,7 @@ body.proj-body {
     background: rgba(255,255,255,0.05);
     border: 1px solid #7b5ea744;
     border-radius: 6px;
+    font-size: 6rem;
     padding: 0.3rem 0.6rem;
 }
 

@@ -81,7 +81,10 @@
                 <h2> Inga pengar kvar!</h2>
                 <a href="{{ path('proj_lobby') }}" class="proj-btn">Börja om</a>
             {% else %}
-                <a href="{{ path('proj_lobby') }}" class="proj-btn">Spela igen </a>
+                <div class="game-over-btns">
+                    <a href="{{ path('proj_play_again') }}" class="proj-btn">Spela igen </a>
+                    <a href="{{ path('proj_lobby') }}" class="proj-btn btn-outline">Ändra inställningar </a>
+                </div>
             {% endif %}
         </div>
 </div>

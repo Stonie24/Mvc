@@ -154,4 +154,27 @@ class ProjController extends AbstractController
                 : $game->getDealerVisibleScore(),
         ]);
     }
+
+    #[Route('/proj/game/again', name: 'proj_play_again', methods: ['GET'])]
+    public function playAgain(
+        SessionInterface $session,
+        PlayerRepository $playerRepository
+    ): Response {
+        $playerId = $session->get('player_id');
+        $player = $playerRepository->find($playerId);
+        $numHands = $session->get('num_hands', 1);
+        $bet = $session->get('bet', 50);
+
+        $game = new BlackjackGame($numHands);
+        $game->deal();
+        $session->set('proj_game', $game);
+
+        return $this->render('proj/game.html.twig', [
+            'game' => $game,
+            'player' => $player,
+            'bet' => $bet,
+            'dealerHand' => [$game->getDealerHand()->getString()[0], '🂠'],
+            'dealerScore' => $game->getDealerVisibleScore(),
+        ]);
+    }
 }

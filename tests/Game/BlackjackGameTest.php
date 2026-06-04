@@ -61,8 +61,7 @@ class BlackjackGameTest extends TestCase
         $game = new BlackjackGame();
         $game->deal();
         $game->stand();
-        $validStatuses = ['dealer_bust', 'player_lost', 'player_win'];
-        $this->assertContains($game->getGameStatus(), $validStatuses);
+        $this->assertEquals('done', $game->getGameStatus());
     }
 
     public function testGetDealerVisibleScore(): void
@@ -92,10 +91,8 @@ class BlackjackGameTest extends TestCase
             }
             $game->hit();
         }
-        $this->assertContains(
-            $game->getGameStatus(),
-            ['playing', 'player_bust']
-        );
+        $validStatuses = ['playing', 'player_bust', 'done'];
+        $this->assertContains($game->getGameStatus(), $validStatuses);
     }
 
     public function testGetPlayerHand(): void
@@ -108,5 +105,71 @@ class BlackjackGameTest extends TestCase
     {
         $game = new BlackjackGame();
         $this->assertInstanceOf(\App\Deck\DeckHand::class, $game->getDealerHand());
+    }
+
+    public function testGetNumHands(): void
+    {
+        $game = new BlackjackGame(3);
+        $this->assertEquals(3, $game->getNumHands());
+    }
+
+    public function testGetCurrentHandIndex(): void
+    {
+        $game = new BlackjackGame();
+        $this->assertEquals(0, $game->getCurrentHandIndex());
+    }
+
+    public function testIsCurrentHand(): void
+    {
+        $game = new BlackjackGame();
+        $this->assertTrue($game->isCurrentHand(0));
+        $this->assertFalse($game->isCurrentHand(1));
+    }
+
+    public function testMultipleHands(): void
+    {
+        $game = new BlackjackGame(3);
+        $game->deal();
+        $this->assertEquals(3, $game->getNumHands());
+        $this->assertCount(3, $game->getPlayerHands());
+    }
+
+    public function testGetHandStatusPlayerBust(): void
+    {
+        $game = new BlackjackGame();
+        $game->deal();
+        for ($i = 0; $i < 20; $i++) {
+            if ($game->getGameStatus() !== 'playing') {
+                break;
+            }
+            $game->hit();
+        }
+        $status = $game->getHandStatus(0);
+        $validStatuses = ['player_bust', 'player_win', 'player_lost', 'dealer_bust', 'playing'];
+        $this->assertContains($status, $validStatuses);
+    }
+
+    public function testGetHandStatusAfterStand(): void
+    {
+        $game = new BlackjackGame();
+        $game->deal();
+        $game->stand();
+        $status = $game->getHandStatus(0);
+        $validStatuses = ['player_win', 'player_lost', 'dealer_bust'];
+        $this->assertContains($status, $validStatuses);
+    }
+
+    public function testGetHandStatusDealerBust(): void
+    {
+        $game = new BlackjackGame();
+        $game->deal();
+        $game->stand();
+        $dealerScore = $game->calculateScore($game->getDealerHand());
+        $handStatus = $game->getHandStatus(0);
+        if ($dealerScore > 21) {
+            $this->assertEquals('dealer_bust', $handStatus);
+        } else {
+            $this->assertContains($handStatus, ['player_win', 'player_lost']);
+        }
     }
 }

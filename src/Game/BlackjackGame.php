@@ -8,27 +8,38 @@ use App\Deck\DeckOfCards;
 class BlackjackGame
 {
     private DeckOfCards $deck;
-    private DeckHand $playerHand;
+    private array $playerHands;
     private DeckHand $dealerHand;
-    private string $currentTurn;
     private string $gameStatus;
+    private int $currentHandIndex;
+    private int $numHands;
 
-    public function __construct()
+    public function __construct(int $numHands = 1)
     {
         $this->deck = new DeckOfCards();
-        $this->playerHand = new DeckHand();
         $this->dealerHand = new DeckHand();
-        $this->currentTurn = 'player';
         $this->gameStatus = 'playing';
+        $this->currentHandIndex = 0;
+        $this->numHands = $numHands;
+
+        $this->playerHands = [];
+        for ($i = 0; $i < $numHands; $i++) {
+            $this->playerHands[] = new DeckHand();
+        }
     }
 
     public function deal(): void
     {
         $this->deck->shuffle();
 
-        foreach ($this->deck->draw(2) as $card) {
-            $this->playerHand->add($card);
+        // Dela ut 2 kort till varje hand
+        foreach ($this->playerHands as $hand) {
+            foreach ($this->deck->draw(2) as $card) {
+                $hand->add($card);
+            }
         }
+
+        // Dela ut 2 kort till banken
         foreach ($this->deck->draw(2) as $card) {
             $this->dealerHand->add($card);
         }
@@ -52,7 +63,6 @@ class BlackjackGame
             }
         }
 
-        // räkna om ess
         while ($score > 21 && $aces > 0) {
             $score -= 10;
             --$aces;
@@ -63,32 +73,74 @@ class BlackjackGame
 
     public function hit(): void
     {
+        $hand = $this->playerHands[$this->currentHandIndex];
         $card = $this->deck->draw(1)[0];
-        $this->playerHand->add($card);
+        $hand->add($card);
 
-        if ($this->calculateScore($this->playerHand) > 21) {
-            $this->gameStatus = 'player_bust';
+        if ($this->calculateScore($hand) > 21) {
+            // Denna hand är bust, gå till nästa
+            $this->nextHand();
         }
     }
 
     public function stand(): void
     {
-        $this->currentTurn = 'dealer';
+        $this->nextHand();
+    }
+
+    private function nextHand(): void
+    {
+        $this->currentHandIndex++;
+
+        // Alla händer klara, banken spelar
+        if ($this->currentHandIndex >= $this->numHands) {
+            $this->playDealer();
+        }
+    }
+
+    private function playDealer(): void
+    {
         while ($this->calculateScore($this->dealerHand) < 17) {
             $card = $this->deck->draw(1)[0];
             $this->dealerHand->add($card);
         }
 
+        $this->gameStatus = 'done';
+    }
+
+    public function getHandStatus(int $index): string
+    {
+        $hand = $this->playerHands[$index];
+        $playerScore = $this->calculateScore($hand);
         $dealerScore = $this->calculateScore($this->dealerHand);
-        $playerScore = $this->calculateScore($this->playerHand);
+
+        if ($playerScore > 21) {
+            return 'player_bust';
+        }
+
+        if ($this->gameStatus !== 'done') {
+            return 'playing';
+        }
 
         if ($dealerScore > 21) {
-            $this->gameStatus = 'dealer_bust';
-        } elseif ($playerScore <= $dealerScore) {
-            $this->gameStatus = 'player_lost';
-        } else {
-            $this->gameStatus = 'player_win';
+            return 'dealer_bust';
         }
+
+        if ($playerScore > $dealerScore) {
+            return 'player_win';
+        }
+
+        return 'player_lost';
+    }
+
+    public function isRoundOver(): bool
+    {
+        return $this->gameStatus === 'done';
+    }
+
+    public function isCurrentHand(int $index): bool
+    {
+        return $index === $this->currentHandIndex && $this->gameStatus === 'playing';
     }
 
     public function getDealerVisibleScore(): int
@@ -110,13 +162,28 @@ class BlackjackGame
         return $this->gameStatus;
     }
 
+    public function getPlayerHands(): array
+    {
+        return $this->playerHands;
+    }
+
     public function getPlayerHand(): DeckHand
     {
-        return $this->playerHand;
+        return $this->playerHands[0];
     }
 
     public function getDealerHand(): DeckHand
     {
         return $this->dealerHand;
+    }
+
+    public function getCurrentHandIndex(): int
+    {
+        return $this->currentHandIndex;
+    }
+
+    public function getNumHands(): int
+    {
+        return $this->numHands;
     }
 }

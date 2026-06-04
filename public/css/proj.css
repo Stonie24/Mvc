@@ -170,3 +170,139 @@ body.proj-body {
     padding: 1rem;
     font-size: 1.1rem;
 }
+
+
+/* Game */
+.proj-game {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    background: rgba(20, 15, 50, 0.8);
+    border: 1px solid #7b5ea7;
+    border-radius: 8px;
+    padding: 0.8rem 1.5rem;
+    margin-bottom: 2rem;
+    color: #c8a2e8;
+    font-size: 1rem;
+}
+
+.game-section {
+    background: rgba(20, 15, 50);
+    border: 1px solid #7b5ea744;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.active-hand {
+    border-color: #c8a2e8;
+}
+
+.game-section h2 {
+    color: #c8a2e8;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+        justify-content: center;
+}
+
+.score-badge {
+    background: #7b5ea7;
+    color: #fff;
+    padding: 0.1rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+.current-tag {
+    color: #c8a2e8;
+    font-size: 0.85rem;
+}
+
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+}
+
+.card {
+    font-size: 2rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #7b5ea744;
+    border-radius: 6px;
+    padding: 0.3rem 0.6rem;
+}
+
+.game-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn-hit, .btn-stand {
+    padding: 0.7rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-hit {
+    background: linear-gradient(135deg, #7b5ea7, #4a3a7a);
+    color: #fff;
+    border: 1px solid #c8a2e8;
+}
+
+.btn-hit:hover { box-shadow: 0 0 12px #7b5ea7; }
+
+.btn-stand {
+    background: rgba(20, 15, 50, 0.8);
+    color: #c8a2e8;
+    border: 1px solid #7b5ea7;
+}
+
+.btn-stand:hover { box-shadow: 0 0 12px #7b5ea744; }
+
+.hand-result {
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+.hand-result.player_win, .hand-result.dealer_bust {
+    background: rgba(80, 200, 80, 0.15);
+    color: #80e880;
+    border: 1px solid #80e88044;
+}
+
+.hand-result.player_bust, .hand-result.player_lost {
+    background: rgba(200, 80, 80, 0.15);
+    color: #e88080;
+    border: 1px solid #e8808044;
+}
+
+.game-over {
+    text-align: center;
+    padding: 2rem;
+}
+
+.game-over h2 {
+    color: #e88080;
+    margin-bottom: 1rem;
+}
+
+.playerhands {
+    display: flex;
+    gap: 5vw    ;
+}

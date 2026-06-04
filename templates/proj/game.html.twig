@@ -1,0 +1,90 @@
+{% extends 'proj/base.html.twig' %}
+
+{% block title %}Spela – Constellation Blackjack{% endblock %}
+
+{% block body %}
+
+<div class="proj-game">
+
+    {# Spelarinfo #}
+    <div class="game-header">
+        <span> {{ player.name }}</span>
+        <span> {{ player.balance }} kr</span>
+        <span> Insats: {{ bet }} kr per hand</span>
+    </div>
+
+    {# Bankens hand #}
+    <div class="game-section">
+        <h2>Banken <span class="score-badge">{{ dealerScore }}</span></h2>
+        <div class="cards">
+            {% for card in dealerHand %}
+                <span class="card">{{ card }}</span>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="gamecontent">
+    {# Spelarens händer #}
+    <div class="playerhands">
+        {% for i in 0..(game.numHands - 1) %}
+        {% set hand = game.playerHands[i] %}
+        {% set status = game.getHandStatus(i) %}
+        {% set isCurrent = game.isCurrentHand(i) %}
+
+        <div class="game-section hand-section {{ isCurrent ? 'active-hand' : '' }}">
+            <h2>
+                Hand {{ i + 1 }}
+                <span class="score-badge">{{ game.calculateScore(hand) }}</span>
+                {% if isCurrent %}<span class="current-tag">← Din tur</span>{% endif %}
+            </h2>
+
+            <div class="cards">
+                {% for card in hand.getString() %}
+                    <span class="card">{{ card }}</span>
+                {% endfor %}
+            </div>
+
+            {# Resultat när rundan är över #}
+            {% if game.isRoundOver() or status == 'player_bust' %}
+                <div class="hand-result {{ status }}">
+                    {% if status == 'player_win' %}
+                        Du vinner! +{{ bet }} kr
+                    {% elseif status == 'dealer_bust' %}
+                        Banken bust! +{{ bet }} kr
+                    {% elseif status == 'player_bust' %}
+                        Bust! -{{ bet }} kr
+                    {% else %}
+                        Banken vinner. -{{ bet }} kr
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {# Knappar för aktiv hand #}
+            {% if isCurrent %}
+                <div class="game-actions">
+                    <form method="post" action="{{ path('proj_hit') }}">
+                        <button type="submit" class="btn-hit">Hit </button>
+                    </form>
+                    <form method="post" action="{{ path('proj_stand') }}">
+                        <button type="submit" class="btn-stand">Stand </button>
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+    </div>
+
+    {# Spela igen #}
+    {% if game.isRoundOver() %}
+        <div class="game-over">
+            {% if player.balance <= 0 %}
+                <h2> Inga pengar kvar!</h2>
+                <a href="{{ path('proj_lobby') }}" class="proj-btn">Börja om</a>
+            {% else %}
+                <a href="{{ path('proj_lobby') }}" class="proj-btn">Spela igen </a>
+            {% endif %}
+        </div>
+</div>
+
+    {% endif %}
+{% endblock %}
